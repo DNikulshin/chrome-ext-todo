@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { Task } from "@/types";
 import { TaskForm } from "@/components/TaskForm";
@@ -14,7 +14,7 @@ function App() {
       text,
       createdAt: Date.now(),
     };
-    setTasks([...tasks, newTask]);
+    setTasks([newTask, ...tasks]);
   };
 
   const updateTask = (id: string, newText: string) => {
@@ -24,6 +24,21 @@ function App() {
   const deleteTask = (id: string) => {
     setTasks(tasks.filter((t) => t.id !== id));
   };
+
+  useEffect(() => {
+    // Устанавливаем соединение
+    const port = chrome.runtime.connect({ name: "sidepanel" });
+
+    // Опционально: можно слушать сообщения от Service Worker через этот порт
+    port.onMessage.addListener((msg) => {
+      console.log("Сообщение от SW:", msg);
+    });
+
+    // Очистка при размонтировании (хотя для sidepanel это сработает при закрытии окна)
+    return () => {
+      port.disconnect();
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-linear-to-br from-indigo-50 to-purple-50 p-4">
