@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* Можно добавить кастомные темы, если нужно */
+@theme {
+  --color-primary: #7c3aed;
+}
