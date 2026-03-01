@@ -22,18 +22,6 @@ function App() {
   const [tasks, setTasks] = useLocalStorage<Task[]>("tasks", []);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
 
-  // Миграция старых задач (добавление поля order)
-  useEffect(() => {
-    const needsMigration = tasks.some((t) => t.order === undefined);
-    if (needsMigration) {
-      const migratedTasks = tasks.map((task, index) => ({
-        ...task,
-        order: index,
-      }));
-      setTasks(migratedTasks);
-    }
-  }, []);
-
   const sensors = useSensors(
     useSensor(PointerSensor, {
       activationConstraint: { distance: 5 },
@@ -80,6 +68,31 @@ function App() {
       });
     }
   };
+
+  // Миграция старых задач (добавление поля order)
+  useEffect(() => {
+    const needsMigration = tasks.some((t) => t.order === undefined);
+    if (needsMigration) {
+      const migratedTasks = tasks.map((task, index) => ({
+        ...task,
+        order: index,
+      }));
+      setTasks(migratedTasks);
+    }
+  }, []);
+
+  useEffect(() => {
+    const port = chrome.runtime.connect({ name: "sidepanel" });
+    // Опционально: можно слушать сообщения от Service Worker через этот порт
+    port.onMessage.addListener((msg) => {
+      console.log("Сообщение от SW:", msg);
+    });
+
+    // Очистка при размонтировании (хотя для sidepanel это сработает при закрытии окна)
+    return () => {
+      port.disconnect();
+    };
+  }, []);
 
   // Сортируем по order для отображения
   const sortedTasks = [...tasks].sort((a, b) => a.order - b.order);
