@@ -1,52 +1,55 @@
-# React + Vite + CRXJS
+# 📋 Менеджер Задач: Ваш личный помощник в браузере
 
-This template helps you quickly start developing Chrome extensions with React, TypeScript and Vite. It includes the CRXJS Vite plugin for seamless Chrome extension development.
+Это расширение для Chrome добавляет удобную боковую панель в ваш браузер, где вы можете управлять списком своих дел. Записывайте идеи, составляйте списки покупок, отслеживайте рабочие задачи — всё это, не отвлекаясь от текущей вкладки.
 
-## Features
+![Скриншот менеджера задач](public/logo.png)
 
-- React with TypeScript
-- TypeScript support
-- Vite build tool
-- CRXJS Vite plugin integration
-- Chrome extension manifest configuration
+## ✨ Основные возможности
 
-## Quick Start
+*   **Быстрый доступ:** Открывайте и закрывайте панель задач одним кликом по иконке расширения.
+*   **Управление задачами:** Легко добавляйте, редактируйте и удаляйте задачи.
+*   **Сортировка:** Меняйте порядок задач простым перетаскиванием (drag-and-drop), чтобы расставить приоритеты.
+*   **Сохранение данных:** Ваш список задач сохраняется локально в браузере, так что ничего не потеряется.
+*   **Копирование в один клик:** Быстро копируйте текст задачи в буфер обмена.
+*   **Безопасное удаление:** Расширение всегда попросит подтверждение перед тем, как навсегда удалить задачу.
+*   **Настройка горячих клавиш:** Настройте комбинации клавиш для быстрого доступа к функциям.
 
-1. Install dependencies:
+## 🚀 Как пользоваться
 
-```bash
-npm install
-```
+1.  **Открытие панели:**
+    *   Нажмите на иконку расширения на панели инструментов Chrome.
+    *   Боковая панель с вашим списком задач откроется в текущем окне.
+    *   *Примечание: панель не может быть открыта на системных страницах Chrome (например, `chrome://extensions`).*
 
-2. Start development server:
+2.  **Добавление задачи:**
+    *   Введите текст новой задачи в поле "Новая задача...".
+    *   Нажмите `Enter` или кнопку "Добавить", чтобы сохранить её.
 
-```bash
-npm run dev
-```
+3.  **Редактирование задачи:**
+    *   Нажмите на текст задачи, которую хотите изменить.
+    *   Внесите правки и нажмите кнопку "Сохранить".
 
-3. Open Chrome and navigate to `chrome://extensions/`, enable "Developer mode", and load the unpacked extension from the `dist` directory.
+4.  **Удаление задачи:**
+    *   Нажмите на значок корзины (🗑️) рядом с задачей.
+    *   Подтвердите свое действие во всплывающем окне.
 
-4. Build for production:
+5.  **Изменение порядка:**
+    *   Нажмите и удерживайте задачу, которую хотите переместить.
+    *   Перетащите её на нужное место в списке и отпустите.
 
-```bash
-npm run build
-```
+## ⌨️ Горячие клавиши
 
-## Project Structure
+Вы можете настроить собственные горячие клавиши для управления задачами. (Эта функция находится в разработке).
 
-- `src/popup/` - Extension popup UI
-- `src/content/` - Content scripts
-- `manifest.config.ts` - Chrome extension manifest configuration
+## 🛠️ Установка
 
-## Documentation
+1.  Скачайте последнюю версию расширения в виде `.zip` архива.
+2.  Распакуйте архив в удобную для вас папку.
+3.  Откройте Chrome и перейдите по адресу `chrome://extensions/`.
+4.  Включите **"Режим разработчика"** в правом верхнем углу.
+5.  Нажмите **"Загрузить распакованное расширение"** и выберите папку, в которую вы распаковали архив.
+6.  Иконка менеджера задач появится на панели инструментов. Готово!
 
-- [React Documentation](https://reactjs.org/)
-- [Vite Documentation](https://vitejs.dev/)
-- [CRXJS Documentation](https://crxjs.dev/vite-plugin)
+---
 
-## Chrome Extension Development Notes
-
-- Use `manifest.config.ts` to configure your extension
-- The CRXJS plugin automatically handles manifest generation
-- Content scripts should be placed in `src/content/`
-- Popup UI should be placed in `src/popup/`
+Спасибо, что используете наш Менеджер Задач!
